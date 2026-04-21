@@ -1,11 +1,13 @@
-'''
-This program prints stdin to the screen.
-'''
 import sys
 
+BATCH_SIZE = 4096
+
 def cat(file):
-    data = file.read()
-    sys.stdout.buffer.write(data)
+    while True:
+        batch = file.read(BATCH_SIZE)
+        if not batch:
+            break
+        sys.stdout.buffer.write(batch)
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
